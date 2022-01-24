@@ -3,11 +3,12 @@ import sys
 board=[i for i in range(0,9)]
 player, computer = '',''
 # Corners, Center and Others, respectively
-moves=((1,7,3,9),(5,),(2,4,6,8))
+moves=("64%2BC%12C%384%", "1F4%", "C8%190%258%320%")
 # Winner combinations
-winners=((0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6))
+winners = ("0%64%C8%", "12C%190%1F4%", "258%2BC%320%", "0%12C%258%", "64%190%2BC%", "C8%1F4%320%", "0%190%320%", "C8%190%258%")
+#decoder 
+decode = lambda st : tuple([int(int("0x" + i.lower(),16)/100) for i in st.strip().split("%") if i != ""])
 # Table
-tab=range(1,10)
 def print_board():
     x=1
     for i in board:
@@ -21,7 +22,7 @@ def print_board():
         print(char,end=end)
 
 def can_move(brd, player, move):
-    if move in tab and brd[move-1] == move-1:
+    if move in range(1,10) and brd[move-1] == move-1:
         return True
     return False
 def can_win(brd, player, move):
@@ -33,7 +34,7 @@ def can_win(brd, player, move):
     win=True
     for tup in winners:
         win=True
-        for ix in tup:
+        for ix in decode(tup):
             if brd[ix] != player:
                 win=False
                 break
@@ -65,7 +66,7 @@ def computer_move():
     if move == -1:
         # Otherwise, try to take one of desired places.
         for tup in moves:
-            for mv in tup:
+            for mv in decode(tup):
                 if move == -1 and can_move(board, computer, mv):
                     move=mv
                     break
@@ -74,6 +75,7 @@ def computer_move():
 
 player, computer = ("X","O")
 print(f"Player is {player} and computer is {computer}" )
+result='%%% Draw ! %%%'
 while board.count('X') + board.count('O') != 9 :
     print_board()
     print('#Make your move ! [1-9] : ', end='')
