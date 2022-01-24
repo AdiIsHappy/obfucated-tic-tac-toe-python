@@ -12,14 +12,12 @@ decode = lambda st : tuple([int(int("0x" + i.lower(),16)/100) for i in st.strip(
 def print_board():
     x=1
     for i in board:
-        end = ' | '
-        if x%3 == 0:
-            end = ' \n'
-            end+='---------\n';
-        char=' '
+        end = ' | ';
+        if x%3 == 0: end = ' \n---------\n';
+        char=' '; 
         if i in ('X','O'): char=i;
-        x+=1
-        print(char,end=end)
+        x+=1;
+        print(char,end=end);
 
 def can_move(brd, player, move):
     if move in range(1,10) and brd[move-1] == move-1:

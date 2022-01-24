@@ -9,12 +9,10 @@ tab=range(1,10)
 def print_board():
     x=1
     for i in board:
-        end = ' | '
-        if x%3 == 0:
-            end = ' \n'
-            end+='---------\n';
-        char=' '
+        end = ' | ';
+        if x%3 == 0:end ='\n---------\n';
+        char=' ';
         if i in ('X','O'): char=i;
-        x+=1
-        print(char,end=end)
+        x+=1;
+        print(char,end=end);
 print_board()
