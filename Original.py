@@ -1,12 +1,15 @@
+""" Tic Tac Toe
+----------------------------------------
+"""
 import random
 import sys
 board=[i for i in range(0,9)]
 player, computer = '',''
-# Corners, Center and Others, respectively
+#Corners, Center and Others, respectively
 moves=((1,7,3,9),(5,),(2,4,6,8))
-# Winner combinations
+#Winner combinations
 winners=((0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6))
-# Table
+#Table
 tab=range(1,10)
 def print_board():
     x=1
@@ -14,12 +17,16 @@ def print_board():
         end = ' | '
         if x%3 == 0:
             end = ' \n'
-            end+='---------\n';
+            if i != 1: end+='---------\n';
         char=' '
         if i in ('X','O'): char=i;
         x+=1
         print(char,end=end)
-
+def select_char():
+    chars=('X','O')
+    if random.randint(0,1) == 0:
+        return chars[::-1]
+    return chars
 def can_move(brd, player, move):
     if move in tab and brd[move-1] == move-1:
         return True
@@ -70,11 +77,12 @@ def computer_move():
                     move=mv
                     break
     return make_move(board, computer, move)
-
-
-player, computer = ("X","O")
-print(f"Player is {player} and computer is {computer}" )
-while board.count('X') + board.count('O') != 9 :
+def space_exist():
+    return board.count('X') + board.count('O') != 9
+player, computer = select_char()
+print('Player is [%s] and computer is [%s]' % (player, computer))
+result='%%% Deuce ! %%%'
+while space_exist():
     print_board()
     print('#Make your move ! [1-9] : ', end='')
     move = int(input())
@@ -82,7 +90,6 @@ while board.count('X') + board.count('O') != 9 :
     if not moved:
         print(' >> Invalid number ! Try again !')
         continue
-   
     if won:
         result='*** Congratulations ! You won ! ***'
         break
