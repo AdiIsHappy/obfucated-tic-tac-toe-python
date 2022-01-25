@@ -2,14 +2,11 @@ board=[i for i in range(0,9)]
 
 decode = lambda st : tuple([int(int("0x" + i.lower(),16)/100) for i in st.strip().split("%") if i != ""])
 
-def print_board():
-    x=1
+def print_board(x=1): 
     for i in board:end = ' \n---------\n' if x%3 == 0 else ' | ' ;char=i if i in ('X','O') else ' ';x+=1;print(char,end=end)
 
 can_move = lambda brd,player,move : True if(move in decode("64%C8%12C%190%1F4%258%2BC%320%384%3E8%") and brd[move-1] == move-1) else(False)
-def can_win(brd, player, move):
-    places=[]
-    x=0
+def can_win(brd, player, move, places=[],x=0 ):
     for i in brd:
         if i == player: places.append(x);
         x+=1
