@@ -1,5 +1,5 @@
 board=[i for i in range(0,9)]
-decodetuple = lambda st : tuple([int(int("0x" + i.lower(),16)/100) for i in st.strip().split("%") if i != ""])
+decodetuple = lambda st : tuple([int(int(strDecode(30768) + i.lower(),16)/100) for i in st.strip().split("%") if i != ""])
 strDecode = lambda cod  : cod.to_bytes((cod.bit_length() + 7) // 8, 'little').decode('utf-8')
 def print_board(x=1): 
     for i in board:end = strDecode(3149465099946629228787468832) if x%3 == 0 else strDecode(2128928) ;char=i if i in (strDecode(88),strDecode(79)) else strDecode(32);x+=1;print(char,end=end)
