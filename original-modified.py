@@ -11,8 +11,9 @@ def print_board():
     x=1
     for i in board:end = ' \n---------\n' if x%3 == 0 else ' | ' ;char=i if i in ('X','O') else ' ';x+=1;print(char,end=end)
 
+
 def can_move(brd, player, move):
-    if move in decode("64%C8%12C%190%1F4%258%2BC%320%384%3E8%") and brd[move-1] == move-1:
+    if move in decode("64%C8%12C%190%1F4%258%2BC%320%384%") and brd[move-1] == move-1:
         return True
     return False
 def can_win(brd, player, move):
@@ -42,23 +43,10 @@ def make_move(brd, player, move, undo=False):
 # AI goes here
 def computer_move():
     move=-1
-    for i in range(1,10):
-        if make_move(board, computer, i, True)[1]:
-            move=i
-            break
-    if move == -1:
-       # If player can win, block him.
-        for i in range(1,10):
-            if make_move(board, player, i, True)[1]:
-                move=i
-                break
-    if move == -1:
-        # Otherwise, try to take one of desired places.
-        for tup in moves:
-            for mv in decode(tup):
-                if move == -1 and can_move(board, computer, mv):
-                    move=mv
-                    break
+    for i in decode("64%C8%12C%190%1F4%258%2BC%320%384%"): move=i if make_move(board, computer, i, True)[1] else move 
+    for i in decode("64%C8%12C%190%1F4%258%2BC%320%384%"): move=i if (make_move(board, player, i, True)[1] and move == -1 ) else move
+    for tup in moves: 
+        for mv in decode(tup):move=mv if (move == -1 and can_move(board, computer, mv) ) else move 
     return make_move(board, computer, move)
 
 
