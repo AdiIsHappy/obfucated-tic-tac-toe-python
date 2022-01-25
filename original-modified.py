@@ -1,5 +1,3 @@
-import random
-import sys
 board=[i for i in range(0,9)]
 player, computer = '',''
 # Corners, Center and Others, respectively
@@ -44,7 +42,6 @@ def make_move(brd, player, move, undo=False):
 # AI goes here
 def computer_move():
     move=-1
-    # If I can win, others do not matter.
     for i in range(1,10):
         if make_move(board, computer, i, True)[1]:
             move=i
