@@ -24,14 +24,14 @@ def computer_move(move=-1):
     for tup in ("64%2BC%12C%384%", "1F4%", "C8%190%258%320%"): 
         for mv in decodetuple(tup):move=mv if (move == -1 and can_move(board, computer, mv) ) else move 
     return make_move(board, computer, move)
-player, computer,result= ("X","O",'%%% Draw ! %%%')
-print(f"Player is {player} and computer is {computer}" )
-while board.count('X') + board.count('O') != 9 :
+player, computer,result= (strDecode(88),strDecode(79),strDecode(753392087135566195640143005951269))
+print(strDecode(2133253257226484250470123498871218130072370858465463595852312495615056))
+while board.count(strDecode(88)) + board.count(strDecode(79)) != 9 :
     print_board()
-    print('#Make your move ! [1-9] : ', end='')
+    print(strDecode(364865467391963340703819446331488245550661500784561705012515), end='')
     moved, won = make_move(board, player, int(input()))
-    if not moved: print(' >> Invalid number ! Try again !');continue
-    elif won: result='*** Congratulations ! You won ! ***';break
-    elif computer_move()[1]: result='=== You lose ! ==';break
+    if not moved: print(strDecode(14983625142471066238736637762128846909719453296568927337993805260712593735200));continue
+    elif won: result=strDecode(319968989474552207729238334693336156281737492066903930382411952211963369643206912554);break
+    elif computer_move()[1]: result=strDecode(20838474115305814913597157443947812699453);break
 print_board()
 print(result)
